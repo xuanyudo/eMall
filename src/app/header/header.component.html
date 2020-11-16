@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+  <div class="container">
+    <a *ngIf="auth.getRole()=='admin'" routerLink="/" class="navbar-brand" routerLinkActive="active">Admin Portal</a>
+    <a *ngIf="auth.getRole()!='admin'" routerLink="/" class="navbar-brand" routerLinkActive="active">eMall</a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+      &#9776;
+    </button>
+    <div class="navbar-collapse collapse" [ngbCollapse]="isCollapsed" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <ng-container *ngIf="!auth.isAuthenticated()">
+          <li class="nav-item">
+            <a routerLink="/auth/login" class="nav-link" routerLinkActive="active">
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/auth/register" class="nav-link">
+              Register
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="auth.isAuthenticated() && auth.getRole()=='admin'">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/brand-list']">Manage brand</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/user-list']">Manage User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/manage-product']">Manage Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              {{ auth.getUsername() }} [Role:{{auth.getRole()}}]
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link pointer" (click)="logout()">
+              Logout
+            </a>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf="auth.isAuthenticated() && auth.getRole()=='customer'">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/product-list']">All product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/cart']">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              {{ auth.getUsername() }} [Role:{{auth.getRole()}}]
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link pointer" (click)="logout()">
+              Logout
+            </a>
+          </li>
+        </ng-container>
+
+      </ul>
+    </div>
+  </div>
+</nav>

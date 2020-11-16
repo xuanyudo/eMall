@@ -1,0 +1,35 @@
+<div class="container">
+    <div *ngIf="msg">
+        <div *ngIf="msg"><h4 class="mt-3 border rounded p-2" [ngClass]="{'alert-danger':msg.type=='error','alert-success':msg.type=='success'}">{{msg.msg}}</h4></div>
+    </div>
+    <table *ngIf="users.length>0" class="table text-center mt-3">
+        <thead class="thead-light">
+            <tr>
+                <th colspan="4">
+                    <h3>User List <a [routerLink]="['/add-user']" class="btn btn-success float-right">Register Admin</a>
+                    </h3>
+                </th>
+            </tr>
+        </thead>
+
+        <tr>
+            <th>User#</th>
+            <th>User Name</th>
+            <th>User Role</th>
+            <th>Operations</th>
+        </tr>
+        <tr *ngFor="let user of users; let i=index">
+            <td
+                [ngClass]="{'text-success':auth.getUsername()==user.username,'font-weight-bold':auth.getUsername()==user.username}">
+                {{ i+1 }}</td>
+            <td
+                [ngClass]="{'text-success':auth.getUsername()==user.username,'font-weight-bold':auth.getUsername()==user.username}">
+                {{user.username}}</td>
+            <td
+                [ngClass]="{'text-success':auth.getUsername()==user.username,'font-weight-bold':auth.getUsername()==user.username}">
+                {{user.role}}</td>
+            <td><button class="btn btn-danger" (click)="deleteUser(user._id)"
+                    [disabled]="auth.getUsername()==user.username">Delete</button></td>
+        </tr>
+    </table>
+</div>
