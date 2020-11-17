@@ -3,7 +3,7 @@ export class Product{
         public pname: string, 
         public price: number,
         public description: string,
-        public imgUrl:String,
+        public imageUrl:String,
         public brand: string,
         public releaseDate: Date) { }
 }

@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   isCollapsed:boolean = true;
   constructor(public auth: AuthService, private router: Router) { }
-
   ngOnInit(): void {
   }
 

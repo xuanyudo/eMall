@@ -51,7 +51,7 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem('auth_tkn');
     localStorage.removeItem('auth_meta');
-
+    localStorage.removeItem('cart');
     this.decodedToken = new DecodedToken();
   }
 

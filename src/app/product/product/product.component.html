@@ -1,0 +1,39 @@
+<div class="container">
+    <div *ngIf="msg.msg">
+        <div *ngIf="msg">
+            <h4 class="mt-3 border rounded p-2"
+                [ngClass]="{'alert-danger':msg.type=='error','alert-success':msg.type=='success'}">{{msg.msg}}</h4>
+        </div>
+    </div>
+    <table class="table text-center mt-3">
+        <thead class="thead-light">
+            <tr>
+                <th colspan="6">
+                    <h3>Product List <a [routerLink]="['/add-product']" class="btn btn-success float-right">Add
+                            Product</a>
+                    </h3>
+                </th>
+            </tr>
+        </thead>
+
+        <tr>
+            <th>Product#</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Price</th>
+            <th>Upload Date</th>
+            <th>Operations</th>
+        </tr>
+        <tr *ngFor="let product of products; let i=index">
+            <td>{{ i+1 }} <br> <img [src]="product.imageUrl" width="64px" height="64px"></td>
+            <td>{{product.pname}}</td>
+            <td>{{product.description}}</td>
+            <td>${{product.price}}</td>
+            <td>{{product.releaseDate}}</td>
+            <td>
+                <a class="btn btn-primary mb-2" [routerLink]="['/manage-product',product._id]">Update</a><br>
+                <button class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>

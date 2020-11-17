@@ -11,6 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer/footer.component';
 import { UserComponent } from './user/user/user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { ProductComponent } from './product/product/product.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { UpdateProductComponent } from './product/update-product/update-product.component';
+import { CustomerProductComponent } from './customer/customer-product/customer-product.component';
+import { CartComponent } from './cart/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +26,11 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     FooterComponent,
     UserComponent,
     AddUserComponent,
+    ProductComponent,
+    AddProductComponent,
+    UpdateProductComponent,
+    CustomerProductComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

@@ -30,32 +30,31 @@ var storeProduct=(req,res)=>{
         if(err){
             res.json({"msg":"Some error occur..."});
         }else{
-            res.json({"msg":"Add product successful..."});
+            res.json({"msg":"Add product successful...", "type":"success"});
         }
     })
 }
 
 var updateProduct=(req,res)=>{
-    var id = req.params.id;
+    var id = req.body._id;
     var pname = req.body.pname;
     var price = req.body.price;
     var description = req.body.description;
     var imageUrl1 = req.body.imageUrl;
     var brand = req.body.brand;
-    var date = new Date();
     ProductModel.update({_id:id},{$set:{
         pname:pname,
         price:price,
         description:description,
         brand:brand,
-        imageUrl:imageUrl1,
-        releaseDate:date
+        imageUrl:imageUrl1
     }},(err, data)=>{
         if(err) throw err;
         if(data.nModified>0){
-            res.json({"msg":"Record updated successfully."});
+            console.log(data)
+            res.json({"msg":"Record updated successfully.","type":"success"});
         }else{
-            res.json({"msg":"There is no update"});
+            res.json({"msg":"There is no update","type":"error"});
         }
 
     })
